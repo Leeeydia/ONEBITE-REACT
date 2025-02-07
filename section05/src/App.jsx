@@ -1,25 +1,19 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Button from "./components/Button";
+import { useState } from "react";
+import Bulb from "./components/Bulb";
+import Counter from "./components/Counter";
+
 function App() {
-  const buttonProps = {
-    text: "메일",
-    color: "red",
-    a: 1,
-    b: 2,
-    C: 3,
-  };
   return (
     <>
-      <Button {...buttonProps} />
-      <Button text={"카페"} />
-      <Button text={"블로그"}>
-        <Header />
-      </Button>
+      <Bulb />
+
+      <Counter />
     </>
   );
 }
 
 export default App;
+
+// useState 가변적인 값을 관리할 때 화면에 랜더링 시키고 싶다면
+// state를 이용해서 처리해야함
