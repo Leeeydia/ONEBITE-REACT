@@ -43,7 +43,7 @@ const App = () => {
       TodoList
       <Header />
       <Editor onCreate={onCreate} />
-      <List />
+      <List todos={todos} />
     </div>
   );
 };
