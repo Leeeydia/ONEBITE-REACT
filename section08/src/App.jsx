@@ -38,12 +38,26 @@ const App = () => {
     setTodos([newTodo, ...todos]);
   };
 
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === targetId) {
+          return {
+            ...todo,
+            isDone: !todo.isDone,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+  // todos.map((todo)=> todo.id === targetId ? {...todo, isDone: !todo.isDone} : todo)
   return (
     <div className="App">
       TodoList
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} />
+      <List todos={todos} onUpdate={onUpdate} />
     </div>
   );
 };
