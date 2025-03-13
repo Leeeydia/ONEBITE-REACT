@@ -51,13 +51,17 @@ const App = () => {
       })
     );
   };
+
+  const onDelete = (targetId) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
   // todos.map((todo)=> todo.id === targetId ? {...todo, isDone: !todo.isDone} : todo)
   return (
     <div className="App">
       TodoList
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 };
