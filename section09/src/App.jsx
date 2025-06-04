@@ -25,7 +25,20 @@ const mockData = [
   },
 ];
 
-const reducer = () => {};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case `CREATE`:
+      return [action.data, ...state];
+    case `UPDATE`:
+      return state.map((item) =>
+        item.id === action.targetId ? { ...item, isDone: !item, isDone } : item
+      );
+    case `DELETE`:
+      return state.filter((item) => item.id !== action.targetId);
+    default:
+      return state;
+  }
+};
 
 const App = () => {
   const [todos, dispatch] = useReducer(reducer, mockData);
@@ -44,30 +57,25 @@ const App = () => {
   };
 
   const onUpdate = (targetId) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === targetId) {
-          return {
-            ...todo,
-            isDone: !todo.isDone,
-          };
-        }
-        return todo;
-      })
-    );
+    dispatch({
+      type: "UPDATE",
+      targetId: targetId,
+    });
   };
 
   const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => todo.id !== targetId));
+    dispatch({
+      type: "DELETE",
+      targetId: targetId,
+    });
   };
   // todos.map((todo)=> todo.id === targetId ? {...todo, isDone: !todo.isDone} : todo)
   return (
     <div className="App">
       TodoList
-      <Exam />
-      {/* <Header />
+      <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 };
