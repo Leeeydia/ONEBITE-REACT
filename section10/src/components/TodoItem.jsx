@@ -8,7 +8,7 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
     onDelete(id);
   };
   return (
-    <div className="TodoItem">
+    <div className=" TodoItem">
       <input
         onChange={onChangeCheckbox}
         readOnly
